@@ -1,11 +1,11 @@
 require 'rails_helper'
 
-Rspec.describe Reward do
+RSpec.describe Reward do
 
   describe "Validations" do
 
-    it { should have_many(:coins) }
-    it { should have_many(:users).through(:user_rewards) }
+    xit { should have_many(:coins) }
+    xit { should have_many(:users).through(:user_rewards) }
 
     it "is valid" do
       expect(build(:reward)).to be_valid
@@ -18,7 +18,7 @@ Rspec.describe Reward do
     end
 
     it "does not have a description" do
-      reward = build(:reward, description: "")
+      reward = build(:reward, desc: "")
 
       expect(reward).to  be_invalid
     end
@@ -32,7 +32,7 @@ Rspec.describe Reward do
 
   describe "Associations" do
 
-    it "has many users" do
+    xit "has many users" do
       reward = create(:reward, :with_users, user_count: 3)
 
       expect(reward.users.count).to eq(3)
