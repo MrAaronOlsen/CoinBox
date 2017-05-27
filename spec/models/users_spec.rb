@@ -173,11 +173,8 @@ RSpec.describe User do
     end
 
     it "can claim reward with only one coin larger than reward cost" do
-      user = User.create(username: 'FuzzyFace')
-      reward = Reward.create(name: "Rock",
-                              desc: "It's very friendly!",
-                              cost: "7",
-                              kind: 1)
+      user = create(:user)
+      reward = create(:reward, cost: 7)
 
       user.points.create(value: 15)
       user_reward = user.claim(reward)
