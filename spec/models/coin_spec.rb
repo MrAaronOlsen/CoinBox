@@ -4,9 +4,10 @@ RSpec.describe Coin do
 
   describe 'Validations' do
 
-    it { should validate_presence_of(:denom) }
     it { should belong_to(:user) }
     it { should belong_to(:user_reward) }
+    it { should validate_numericality_of(:denom).is_less_than(4) }
+    it { should validate_numericality_of(:denom).is_greater_than_or_equal_to(0) }
 
     it 'is valid' do
       expect(build(:coin)).to be_valid
@@ -15,13 +16,16 @@ RSpec.describe Coin do
     it 'does not supply a denom' do
       coin = build(:coin, denom: "")
       expect(coin).to be_invalid
-      expect(coin.errors.full_messages).to eq("Type can't be blank")
+      expect(coin.errors.full_messages).to eq(["Denom can't be blank", "Denom is not a number"])
     end
 
     it 'supplies denom is out of range' do
-      coin = build(:coin, denom: 5)
+      coin = build(:coin, denom: 4)
       expect(coin).to be_invalid
-      expect(coin.errors.full_messages).to eq("Type can't be greater than 4")
+      expect(coin.errors.full_messages).to eq(["Denom must be less than 4"])
+      coin = build(:coin, denom: -1)
+      expect(coin).to be_invalid
+      expect(coin.errors.full_messages).to eq(["Denom must be greater than or equal to 0"])
     end
   end
 
@@ -30,61 +34,52 @@ RSpec.describe Coin do
     it 'is copper' do
       coin = create(:coin, denom: 0)
 
-      expect(coin.denom).to eq('copper')
+      expect(coin.name).to eq('Copper')
       expect(coin.value).to eq(1)
     end
 
     it 'is silver' do
       coin = create(:coin, denom: 1)
 
-      expect(coin.denom).to eq('silver')
+      expect(coin.name).to eq('Silver')
       expect(coin.value).to eq(3)
     end
 
     it 'is gold' do
       coin = create(:coin, denom: 2)
 
-      expect(coin.denom).to eq('gold')
+      expect(coin.name).to eq('Gold')
       expect(coin.value).to eq(8)
     end
 
     it 'is ruby' do
       coin = create(:coin, denom: 3)
 
-      expect(coin.denom).to eq('ruby')
+      expect(coin.name).to eq('Ruby')
       expect(coin.value).to eq(15)
     end
   end
 
   describe "Associations" do
 
-    xit "belongs to a user" do
+    it "belongs to a user" do
       coin = create(:coin, :with_user)
 
       expect(coin.user).to be_a(User)
     end
 
-    xit "belongs to a user_reward" do
+    it "belongs to a user_reward" do
       coin = create(:coin, :with_reward)
 
-      expect(coin.reward).to be_a(Reward)
+      expect(coin.user_reward).to be_a(UserReward)
     end
   end
 
   describe "Methods" do
 
-    xit "can be redeemed" do
+    it "can be redeemed" do
       coin = create(:coin, :with_reward)
       expect(coin.redeemed?).to be_truthy
-    end
-
-    xit "can not belong to a redeemed reward" do
-      reward = create(:reward, :redeemed)
-      coin = create(:coin)
-
-      reward.coins << coin
-
-      expect(coin.reward).to be_falsey
     end
   end
 end

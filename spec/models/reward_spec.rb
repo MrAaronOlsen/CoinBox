@@ -4,8 +4,7 @@ RSpec.describe Reward do
 
   describe "Validations" do
 
-    xit { should have_many(:coins) }
-    xit { should have_many(:users).through(:user_rewards) }
+    it { should have_many(:users).through(:user_rewards) }
 
     it "is valid" do
       expect(build(:reward)).to be_valid
@@ -32,7 +31,7 @@ RSpec.describe Reward do
 
   describe "Associations" do
 
-    xit "has many users" do
+    it "has many users" do
       reward = create(:reward, :with_users, user_count: 3)
 
       expect(reward.users.count).to eq(3)
