@@ -13,6 +13,10 @@ class User < ApplicationRecord
 
   enum role: ['user', 'admin']
 
+  def all_affordable_rewards
+    Reward.where("cost <= ? ", money_in_box.sum(&:value)).order('cost DESC')
+  end
+
   def afford?(reward)
     reward.cost <= money_in_box.sum(&:value)
   end

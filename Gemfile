@@ -42,6 +42,7 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 gem 'kaminari'
 group :development, :test do
+  gem 'faker'
   gem 'rspec-rails'
   gem 'capybara'
   gem 'launchy'
