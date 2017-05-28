@@ -5,7 +5,14 @@
     </div>
 
     <div class="col-2 user-nav-menu">
-      <%= link_to 'Login', login_path %>
+      <% if current_user %>
+        <span id="user-<%= current_user.id %>">
+          <%= link_to current_user.username, user_profile_path(current_user, current_user.profile) %>
+        </span>
+        <span><%= link_to 'Log Out', logout_path, method: 'delete' %></span>
+      <% else %>
+        <%= link_to 'Login', login_path %>
+      <% end %>
     </div>
   </div>
 </header>

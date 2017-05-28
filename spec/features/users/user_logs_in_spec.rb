@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe 'User wants to log in' do
 
-  xit 'logs in first time with no user profile and fills in user profile' do
+  it 'logs in first time with no user profile and fills in user profile' do
     user = create(:user)
     visit(root_path)
     click_link('Login')
@@ -23,46 +23,54 @@ RSpec.describe 'User wants to log in' do
     visit login_path
 
     within('.login-form') do
-      fill_in 'Username', :with => 'FuzzyLumpkin1'
-      fill_in 'Password', :with => 'password'
+      fill_in 'Username', :with => user.username
+      fill_in 'Password', :with => user.password
       click_on('Login')
     end
 
     expect(page).to have_current_path("/users/#{user.id}/profiles/#{user.profile.id}/edit")
     expect(page).to have_content("Logged in as #{user.username}")
 
-    fill_in 'First Name', with: 'Fuzzy'
-    fill_in 'Last Name', with: 'Lumpkin'
+    within('form') do
+      fill_in 'profile_first_name', with: 'Fuzzy'
+      fill_in 'profile_last_name', with: 'Lumpkin'
 
-    click_link 'Update Profile'
+      click_on 'Update Profile'
+    end
 
-    expect(user.roll).to eq('user')
-    expect(page).to have_current_path("user/#{user.id}")
-    expect(within_fieldset "user-#{user.id}").to have_content('FussyLumpkin')
+    expect(user.role).to eq('user')
+    expect(page).to have_current_path("/users/#{user.id}")
+    expect(page).to have_content(user.username)
   end
 
-  xit 'logs in' do
-    user = create(:user, :with_profile)
+  it 'logs in' do
+    user = create(:user, profile: create(:profile, first_name: 'Fuzzy', last_name: 'Lumpkin'))
+
     visit('/login')
 
-    fill_in 'Username', :with => 'FuzzyLumpkin'
-    fill_in 'Password', :with => 'password'
-    click_button 'Login'
+    within('.login-form') do
+      fill_in 'Username', :with => user.username
+      fill_in 'Password', :with => user.password
+      click_on 'Login'
+    end
 
-    expect(user.roll).to eq('user')
-    expect(page).to have_current_path("user/#{user.id}")
-    expect(page).to have_content('Welcome back FuzzyLumpkin')
+    expect(user.role).to eq('user')
+    expect(page).to have_content('Log Out')
+    expect(page).to have_current_path("/users/#{user.id}")
+    expect(page).to have_content(user.username)
   end
 
-  xit 'logs out' do
-    user = create(:user, :with_profile)
+  it 'logs out' do
+    user = create(:user, profile: create(:profile, first_name: 'Fuzzy', last_name: 'Lumpkin'))
     visit('/login')
 
-    fill_in 'Username', :with => 'FuzzyLumpkin'
-    fill_in 'Password', :with => 'password'
-    click_button 'Login'
+    within('.login-form') do
+      fill_in 'Username', :with => user.username
+      fill_in 'Password', :with => user.password
+      click_on 'Login'
+    end
 
-    click_button 'Logout'
+    click_link 'Log Out'
 
     expect(page).to have_current_path('/')
     expect(page).to have_content("Logged Out")
