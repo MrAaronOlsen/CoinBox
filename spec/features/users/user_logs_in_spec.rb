@@ -6,14 +6,28 @@ RSpec.describe 'User wants to log in' do
     user = create(:user)
     visit(root_path)
     click_link('Login')
-    expect(page).to have_current_path('/login')
+    click_link('Create Account')
+    expect(page).to have_current_path('/users/new')
 
     fill_in 'Username', :with => 'FuzzyLumpkin'
     fill_in 'Password', :with => 'password'
-    click_button 'Login'
+    click_button 'Create Account'
 
-    expect(page).to have_current_path("user/#{user.id}/profile")
-    expect(page).to have_content('Please fill in your profile')
+    expect(page).to have_current_path(login_path)
+    expect(page).to have_content('User Successfully Created. Please Login.')
+  end
+
+  xit 'logs in for after making an account' do
+    user = create(:user)
+
+    visit(login_path)
+
+    fill_in 'Username', :with => 'FuzzyLumpkin'
+    fill_in 'Password', :with => 'password'
+    click 'Login'
+
+    expect(page).to have_current_path(edit_user_profile(user, user.profile))
+    expect(page).to have_content("Logged in as #{user.username}")
 
     fill_in 'First Name', with: 'Fuzzy'
     fill_in 'Last Name', with: 'Lumpkin'
