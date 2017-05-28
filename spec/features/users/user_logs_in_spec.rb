@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe 'User wants to log in' do
 
-  it 'logs in first time with no user profile and fills in user profile' do
+  xit 'logs in first time with no user profile and fills in user profile' do
     user = create(:user)
     visit(root_path)
     click_link('Login')
@@ -17,16 +17,18 @@ RSpec.describe 'User wants to log in' do
     expect(page).to have_content('User Successfully Created. Please Login.')
   end
 
-  xit 'logs in for after making an account' do
+  it 'logs in after making an account' do
     user = create(:user)
 
-    visit(login_path)
+    visit login_path
 
-    fill_in 'Username', :with => 'FuzzyLumpkin'
-    fill_in 'Password', :with => 'password'
-    click 'Login'
+    within('.login-form') do
+      fill_in 'Username', :with => 'FuzzyLumpkin1'
+      fill_in 'Password', :with => 'password'
+      click_on('Login')
+    end
 
-    expect(page).to have_current_path(edit_user_profile(user, user.profile))
+    expect(page).to have_current_path("/users/#{user.id}/profiles/#{user.profile.id}/edit")
     expect(page).to have_content("Logged in as #{user.username}")
 
     fill_in 'First Name', with: 'Fuzzy'

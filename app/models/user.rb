@@ -6,7 +6,6 @@ class User < ApplicationRecord
   has_many :rewards, through: :user_rewards
   has_one :profile
 
-  validates_associated :profile
   validates :username, presence: true
   validates_uniqueness_of :username, case_sensitive: false
   validates_length_of :password, minimum: 7

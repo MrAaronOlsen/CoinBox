@@ -5,8 +5,8 @@ FactoryGirl.define do
     sequence :username do |i|
       "FuzzyLumpkin#{i}"
     end
-
     password "password"
+    profile
   end
 
   trait :with_rewards do

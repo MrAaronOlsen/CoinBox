@@ -1,12 +1,12 @@
-<div class="new-user-form">
-  <%= form_for(:session, url: login_path) do |f| %>
-    <%= f.label :username, 'Username' %>
-    <%= f.text_field :username %>
+<div class='login-form'>
+  <%= form_tag '/login' do %>
+    <%= label_tag :username, 'Username' %>
+    <%= text_field_tag :username %>
 
-    <%= f.label :password, 'Password' %>
-    <%= f.text_field :password %>
+    <%= label_tag :password, 'Password' %>
+    <%= text_field_tag :password %>
 
-    <%= f.submit 'Login' %>
+    <%= submit_tag "Login" %>
   <% end %>
-  <%= link_to 'Create Account', new_user_path %>
 </div>
+  <%= link_to 'Create Account', new_user_path %>
