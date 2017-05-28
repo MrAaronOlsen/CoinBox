@@ -1,12 +1,29 @@
-<div class='login-form'>
-  <%= form_tag '/login' do %>
-    <%= label_tag :username, 'Username' %>
-    <%= text_field_tag :username %>
+<section class="widget-screen">
 
-    <%= label_tag :password, 'Password' %>
-    <%= text_field_tag :password %>
+  <div class="widget-frame">
+    <div class="widget-window box-shadow">
+      <div class="widget-header box-shadow">
+        <h4>Login</h4>
+      </div>
+      <div class="widget-body">
+        <%= form_tag '/login' do %>
+          <div class="widget-row">
+            <span class="col-4"><%= label_tag :username, 'Username' %></span>
+            <span class="col-8"><%= text_field_tag :username %></span>
+          </div>
+          <div class="widget-row">
+            <span class="col-4"><%= label_tag :password, 'Password' %></span>
+            <span class="col-8"><%= text_field_tag :password %></span>
+          </div>
+          <div class="widget-row">
+            <span><%= submit_tag "Login" %></span>
+          </div>
+          <div class="widget-row">
+            <span><%= button_to "Create Account", new_user_path %></span>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
 
-    <%= submit_tag "Login" %>
-  <% end %>
-</div>
-  <%= link_to 'Create Account', new_user_path %>
+</section>

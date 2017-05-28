@@ -78,8 +78,41 @@ h5 {
   font-size: 17px;
 }
 
-table {
-  text-align: left;
+a {
+  color: rgba(50,6,0,1);
+  text-decoration: none;
+}
+
+a:hover {
+  color: rgba(186,179,147, 1);
+  font-weight: 400;
+}
+
+form {
+  width: 100%;
+}
+
+input[type='text'] {
+  height: 20px;
+  width: 100%;
+  border-style: none;
+  background-color: rgba(224, 219, 195, 1);
+}
+
+input[type='text']:focus {
+  outline-color: rgba(130,65,25,1);
+}
+
+input[type='submit'] {
+  border-style: none;
+  border-radius: 5px;
+  background-color: rgba(214,107,41,1);
+  width: 100px;
+}
+
+input[type='submit']:hover {
+  outline-color: red;
+  background-color: rgba(224, 219, 195, 1);
 }
 
 .container {

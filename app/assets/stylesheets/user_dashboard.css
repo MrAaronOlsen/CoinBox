@@ -3,29 +3,49 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  margin: 0 auto;
+  justify-content: space-around;
 }
 
 .widget-frame {
-  width: 410px;
+  width: 350px;
+  height: 350px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-.widget {
-  background-color: rgba(130,65,25, 0.5);
-  border-radius: 10px;
-  height: 300px;
-  overflow: scroll;
+.widget-window {
+  width: 290px;
+  height: 290px;
 }
 
-.widget h4 {
+.widget-header {
   background-color: rgba(214,107,41,1);
-  padding-top: 10px;
-  padding-bottom: 10px;
-  text-align: center;
-  border-bottom: solid;
-  border-bottom-color: rgba(130,65,25,1)
+  border-bottom-width: thick;
+  border-bottom-style: solid;
+  border-bottom-color: rgba(130,65,25,1);
+  width: 100%;
+  height: 18%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-.widget h5 {
-  padding-bottom: 10px;
+.widget-body {
+  width: 100%;
+  height: 82%;
+  padding: 10px;
+  overflow: scroll;
+  display: flex;
+  justify-content: center;
+}
+
+.widget-row {
+  height: 30px;
+  width: 100%;
+  margin: 7px 0 7px 0;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
 }
