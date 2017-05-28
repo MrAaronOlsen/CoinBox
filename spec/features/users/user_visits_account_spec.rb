@@ -2,47 +2,53 @@ require 'rails_helper'
 
 RSpec.describe 'User visits account' do
 
-  before do
+  def login
     @user = create(:user, :with_all)
+    @user.profile = create(:profile, first_name: 'Fuzzy', last_name: 'Lumpkin')
     visit(root_path)
     click_link('Login')
     expect(page).to have_current_path('/login')
 
-    fill_in 'Username', :with => 'FuzzyLumpkin'
-    fill_in 'Password', :with => 'password'
+    fill_in 'Username', :with => "#{@user.username}"
+    fill_in 'Password', :with => "#{@user.password}"
     click_button 'Login'
   end
 
   it 'sees all of their coins' do
-    within_fieldset('coins') do
-      within_fieldset('ruby') do
+    login
+
+    within(page.find('section', text: 'Coins')) do
+      within(page.find(".widget-row", text: 'Rubies')) do
         expect(page).to have_content(10)
         expect(page).to have_content(150)
       end
 
-      within_fieldset('gold') do
+      within(page.find(".widget-row", text: 'Gold')) do
         expect(page).to have_content(15)
         expect(page).to have_content(120)
       end
 
-      within_fieldset('silver') do
+      within(page.find(".widget-row", text: 'Silver')) do
         expect(page).to have_content(20)
         expect(page).to have_content(60)
       end
 
-      within_fieldset('copper') do
+      within(page.find(".widget-row", text: 'Copper')) do
         expect(page).to have_content(30)
         expect(page).to have_content(30)
       end
 
-      within_fieldset('total') do
+      within(page.find(".widget-row", text: 'Total')) do
         expect(page).to have_content(75)
         expect(page).to have_content(360)
       end
+    end
   end
 
   it 'sees all of their awards' do
-    within_fieldset('awards') do
+    login
+
+    within(page.find(".widget-window-large", text: 'Claimed Rewards')) do
       expect(page).to have_content('Rock')
       expect(page).to have_content(7)
       expect(page).to have_content('Icecream')
@@ -50,14 +56,16 @@ RSpec.describe 'User visits account' do
     end
   end
 
-  it 'sees all possible awards' do
+  it 'sees all possible rewards' do
     create(:reward, cost: 100)
     create(:reward, cost: 50)
     create(:reward, cost: 200)
     create(:reward, cost: 350)
     create(:reward, cost: 361)
 
-    within_fieldset('ready-awards') do
+    login
+
+    within(page.find(".widget-window-large", text: 'Ready Rewards')) do
       expect(page).to have_content('Rock')
       expect(page).to have_content(100)
       expect(page).to have_content(50)
@@ -73,7 +81,9 @@ RSpec.describe 'User visits account' do
     create(:reward, cost: 600)
     create(:reward, cost: 1700)
 
-    within_fieldset('all-awards') do
+    login
+    
+    within(page.find(".widget-window-large", text: 'All Rewards')) do
       expect(page).to have_content('Rock')
       expect(page).to have_content(100)
       expect(page).to have_content(50)
@@ -81,3 +91,4 @@ RSpec.describe 'User visits account' do
       expect(page).to have_content(1700)
     end
   end
+end

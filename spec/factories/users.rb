@@ -26,6 +26,17 @@ FactoryGirl.define do
     end
   end
 
+  trait :with_all do
+    after(:create) do |user|
+      user.rewards << create(:reward, name: 'Rock', desc: "It's friendly!", cost: 7)
+      user.rewards << create(:reward, name: 'Icecream', desc: "It's cold!", cost: 15)
+      user.coins << create_list(:coin, 30, denom: 0)
+      user.coins << create_list(:coin, 20, denom: 1)
+      user.coins << create_list(:coin, 15, denom: 2)
+      user.coins << create_list(:coin, 10, denom: 3)
+    end
+  end
+
   trait :as_admin do
     after(:create) do |user|
       user.admin!
