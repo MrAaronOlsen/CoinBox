@@ -25,7 +25,7 @@ RSpec.describe 'User wants to log in' do
     expect(within_fieldset "user-#{user.id}").to have_content('FussyLumpkin')
   end
 
-  it 'logs in' do
+  xit 'logs in' do
     user = create(:user, :with_profile)
     visit('/login')
 
@@ -38,7 +38,7 @@ RSpec.describe 'User wants to log in' do
     expect(page).to have_content('Welcome back FuzzyLumpkin')
   end
 
-  it 'logs out' do
+  xit 'logs out' do
     user = create(:user, :with_profile)
     visit('/login')
 

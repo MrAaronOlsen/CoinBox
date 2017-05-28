@@ -1,0 +1,31 @@
+.widget-screen {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin: 0 auto;
+}
+
+.widget-frame {
+  width: 410px;
+}
+
+.widget {
+  background-color: rgba(130,65,25, 0.5);
+  border-radius: 10px;
+  height: 300px;
+  overflow: scroll;
+}
+
+.widget h4 {
+  background-color: rgba(214,107,41,1);
+  padding-top: 10px;
+  padding-bottom: 10px;
+  text-align: center;
+  border-bottom: solid;
+  border-bottom-color: rgba(130,65,25,1)
+}
+
+.widget h5 {
+  padding-bottom: 10px;
+}
