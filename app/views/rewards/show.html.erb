@@ -1,0 +1,19 @@
+<section class="widget-screen">
+
+  <div class="widget-frame-large">
+    <div class="widget-window-large box-shadow">
+      <div class="widget-header box-shadow">
+        <h4><%= @reward.name %></h4>
+      </div>
+        <div class="widget-body">
+          <div class="widget-row">
+            <span class="col-12"><%= @reward.desc %></span>
+          </div>
+          <div class="buy-row center">
+            <h3 class="col-12 center"><%= link_to @reward.cost, user_claim_reward_path(current_user, @reward) %></h3>
+          </div>
+        </div>
+    </div>
+  </div>
+
+</section>
