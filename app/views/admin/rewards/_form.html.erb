@@ -1,12 +1,12 @@
 <section class="widget-screen">
 
-  <div class="widget-frame">
-    <div class="widget-window box-shadow">
+  <div class="widget-frame-large">
+    <div class="widget-window-large box-shadow">
       <div class="widget-header box-shadow">
         <h4>Create Reward</h4>
       </div>
           <div class="widget-body">
-            <%= form_for @reward do |f| %>
+            <%= form_for [:admin, @reward] do |f| %>
               <div class="widget-row">
                 <span class="col-4"><%= f.label :name %></span>
                 <span class="col-8"><%= f.text_field :name %></span>

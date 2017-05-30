@@ -54,6 +54,9 @@
           <span class="col-4"><%= @user.money_in_box.count %></span>
           <span class="col-4"><%= @user.money_in_box.sum(&:value) %></span>
         </div>
+        <div class="widget-row-header box-shadow">
+          <%= render partial: 'admin/coins/form' %>
+        </div>
       </div>
     </div>
   </div>

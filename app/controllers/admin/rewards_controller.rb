@@ -9,7 +9,7 @@ class Admin::RewardsController < Admin::BaseController
 
     if @reward.save
       flash[:success] = "Reward Created"
-      redirect_to admin_dashboard_path
+      redirect_to admin_dashboard_path(current_user)
     else
       render :new
     end

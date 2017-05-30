@@ -20,6 +20,7 @@ Rails.application.routes.draw do
     resources :dashboard, only: :show
     resources :users, only: :show
     resources :rewards
+    resources :coins, only: [:new, :create]
   end
 
 end

@@ -1,0 +1,5 @@
+<%= form_for [:admin, Coin.new] do |f| %>
+  <div class="widget-row">
+    <%= select_tag(:coin, options_for_select(Coin.names)) %>
+  </div>
+<% end %>

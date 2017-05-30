@@ -7,7 +7,7 @@ class Coin < ApplicationRecord
                                      greater_than_or_equal_to: 0 }
 
   def name
-    ['Copper', 'Silver', 'Gold', 'Ruby'][denom]
+    Coin.names[denom]
   end
 
   def value
@@ -16,6 +16,10 @@ class Coin < ApplicationRecord
 
   def redeemed?
     user_reward_id != nil
+  end
+
+  def self.names
+    ['Copper', 'Silver', 'Gold', 'Ruby']
   end
 
 end
