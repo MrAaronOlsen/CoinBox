@@ -1,0 +1,81 @@
+<section class="widget-screen">
+
+  <div class="widget-frame-large">
+    <div class="widget-window-large box-shadow">
+      <div class="widget-header box-shadow">
+        <h4><%= "#{@user.profile.first_name} #{@user.profile.last_name}" %></h4>
+      </div>
+      <div class="widget-row-header box-shadow">
+        <span class="col-4">Coins</span>
+        <span class="col-2">Awards</span>
+      </div>
+      <div class="widget-body">
+        <div class="widget-row">
+          <span class="col-4"><%= @user.money_in_box.sum(&:value) %></span>
+          <span class="col-2"><%= @user.rewards.count %></span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="widget-frame-large">
+    <div class="widget-window-large box-shadow">
+      <div class="widget-header box-shadow">
+        <h4>Coins</h4>
+      </div>
+      <div class="widget-row-header box-shadow">
+        <span class="col-4">Coin</span>
+        <span class="col-4">#</span>
+        <span class="col-4">Value</span>
+      </div>
+      <div class="widget-body">
+        <div class="widget-row">
+          <span class="col-4">Rubies</span>
+          <span class="col-4"><%= @user.show_coins[0].count %></span>
+          <span class="col-4"><%= @user.show_coins[0].sum(&:value) %></span>
+        </div>
+        <div class="widget-row">
+          <span class="col-4">Gold</span>
+          <span class="col-4"><%= @user.show_coins[1].count %></span>
+          <span class="col-4"><%= @user.show_coins[1].sum(&:value) %></span>
+        </div>
+        <div class="widget-row">
+          <span class="col-4">Silver</span>
+          <span class="col-4"><%= @user.show_coins[2].count %></span>
+          <span class="col-4"><%= @user.show_coins[2].sum(&:value) %></span>
+        </div>
+        <div class="widget-row">
+          <span class="col-4">Copper</span>
+          <span class="col-4"><%= @user.show_coins[3].count %></span>
+          <span class="col-4"><%= @user.show_coins[3].sum(&:value) %></span>
+        </div>
+        <div class="widget-row">
+          <span class="col-4">Total</span>
+          <span class="col-4"><%= @user.money_in_box.count %></span>
+          <span class="col-4"><%= @user.money_in_box.sum(&:value) %></span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="widget-frame-large">
+    <div class="widget-window-large box-shadow">
+      <div class="widget-header box-shadow">
+        <h4>User Rewards (<%= @user.rewards.count %>)</h4>
+      </div>
+      <div class="widget-row-header box-shadow">
+        <span class="col-10">Name</span>
+        <span class="col-2">Cost</span>
+      </div>
+      <div class="widget-body">
+        <% @user.rewards.each do |reward| %>
+          <div class="widget-row">
+            <span class="col-10"><%= link_to reward.name[0..35], user_reward_path(@user, reward) %></span>
+            <span class="col-2"><%= reward.cost %></span>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+
+</section>

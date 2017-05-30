@@ -12,7 +12,11 @@ class SessionsController < ApplicationController
       if @user.profile.new?
         redirect_to edit_user_profile_path(@user, @user.profile)
       else
-        redirect_to @user
+        if @user.admin?
+          redirect_to admin_dashboard_path(@user)
+        else
+          redirect_to @user
+        end
       end
     else
       flash[:msg] = 'Login Failed'

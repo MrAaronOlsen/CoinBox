@@ -67,3 +67,15 @@
   width: 100%;
   margin: 7px 0 7px 0;
 }
+
+.buy-row {
+  height: 50px;
+  width: 100%;
+  margin: 10px 0 10px 0;
+}
+
+.center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

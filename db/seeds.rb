@@ -1,5 +1,14 @@
+admin = User.create( username: 'mraaronolsen',
+                     password: 'password')
+admin.admin!
+profile = Profile.create( first_name: 'Aaron',
+                          last_name: 'Olsen',
+                          user: admin )
+
+                                    
 user = User.create( username: 'fuzzylumpkin',
                     password: 'password' )
+
 profile = Profile.create( first_name: 'Fuzzy',
                           last_name: 'Lumpkin',
                           user: user )
