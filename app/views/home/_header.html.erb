@@ -6,12 +6,12 @@
 
     <div class="col-2 user-nav-menu">
       <% if current_user %>
-        <span class="col-6 menu-item">
+        <span class="menu-item">
           <%= link_to current_user.username, user_profile_path(current_user, current_user.profile) %>
         </span>
-        <span class="col-6 menu-item"><%= link_to 'Log Out', logout_path, method: 'delete' %></span>
+        <span class="menu-item"><%= link_to 'Log Out', logout_path, method: 'delete' %></span>
       <% else %>
-        <span class='col-12 menu-item'><%= link_to 'Login', login_path %></span>
+        <span class='menu-item'><%= link_to 'Login', login_path %></span>
       <% end %>
     </div>
   </div>

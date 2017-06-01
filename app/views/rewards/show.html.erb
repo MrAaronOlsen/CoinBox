@@ -10,7 +10,12 @@
             <span class="col-12"><%= @reward.desc %></span>
           </div>
           <div class="buy-row center">
-            <h3 class="col-12 center"><%= link_to @reward.cost, user_claim_reward_path(current_user, @reward) %></h3>
+            <h3 class="col-12 center">
+              <%= if current_user.afford?(@reward) then link_to @reward.cost, user_claim_reward_path(current_user, @reward) end %>
+            </h3>
+          </div>
+          <div class="widget-row center">
+            <span class='btn btn-large'><%= link_to 'Dashboard', user_path(current_user) %></span>
           </div>
         </div>
     </div>

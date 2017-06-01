@@ -18,9 +18,10 @@ Rails.application.routes.draw do
 
   namespace :admin do
     resources :dashboard, only: :show
-    resources :users, only: :show
+    resources :users, only: :show do
+      resources :coins, only: :create
+    end
     resources :rewards
-    resources :coins, only: [:new, :create]
   end
 
 end

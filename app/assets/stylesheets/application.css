@@ -114,8 +114,17 @@ input[type='submit'] {
   width: 100px;
 }
 
+input[type='submit'], .btn-small {
+  width: 50px;
+}
+
 input[type='submit']:hover {
   background-color: rgba(224, 219, 195, 1);
+}
+
+a.disable {
+  color: red;
+  cursor: not-allowed;
 }
 
 .btn {
@@ -136,6 +145,10 @@ input[type='submit']:hover {
 
 .btn-large {
   width: 100px;
+}
+
+.btn-small {
+  width: 50px;
 }
 
 .container {

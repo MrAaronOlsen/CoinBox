@@ -1,4 +1,9 @@
 class UsersController < ApplicationController
+  before_action :require_user
+
+  def require_user
+    render file: '/public/404' unless current_user?
+  end
 
   def show
     @user = User.find(params[:id])

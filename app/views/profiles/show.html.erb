@@ -15,7 +15,10 @@
                 <span class="col-8"><%= @profile.last_name %></span>
               </div>
               <div class="widget-row center">
-                <span class='btn'><%= link_to 'Edit Profile', edit_user_profile_path(@profile.user, @profile) %></span>
+                <span class='btn btn-large'><%= link_to 'Edit Profile', edit_user_profile_path(@profile.user, @profile) %></span>
+              </div>
+              <div class="widget-row center">
+                <span class='btn btn-large'><%= link_to 'Dashboard', user_path(current_user) %></span>
               </div>
         </div>
     </div>

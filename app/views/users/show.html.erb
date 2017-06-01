@@ -11,32 +11,18 @@
         <span class="col-4">Value</span>
       </div>
       <div class="widget-body">
-        <div class="widget-row">
-          <span class="col-4">Rubies</span>
-          <span class="col-4"><%= @user.show_coins[0].count %></span>
-          <span class="col-4"><%= @user.show_coins[0].sum(&:value) %></span>
-        </div>
-        <div class="widget-row">
-          <span class="col-4">Gold</span>
-          <span class="col-4"><%= @user.show_coins[1].count %></span>
-          <span class="col-4"><%= @user.show_coins[1].sum(&:value) %></span>
-        </div>
-        <div class="widget-row">
-          <span class="col-4">Silver</span>
-          <span class="col-4"><%= @user.show_coins[2].count %></span>
-          <span class="col-4"><%= @user.show_coins[2].sum(&:value) %></span>
-        </div>
-        <div class="widget-row">
-          <span class="col-4">Copper</span>
-          <span class="col-4"><%= @user.show_coins[3].count %></span>
-          <span class="col-4"><%= @user.show_coins[3].sum(&:value) %></span>
-        </div>
+        <% @user.show_coins.each_with_index do |denom, i| %>
+          <div class="widget-row">
+            <span class="col-4"> <%= Coin.names[i] %> </span>
+            <span class="col-4"><%= denom.count %></span>
+            <span class="col-4"><%= denom.sum(&:value) %></span>
+          </div>
+        <% end %>
         <div class="widget-row">
           <span class="col-4">Total</span>
           <span class="col-4"><%= @user.money_in_box.count %></span>
           <span class="col-4"><%= @user.money_in_box.sum(&:value) %></span>
         </div>
-
       </div>
     </div>
   </div>
