@@ -1,11 +1,26 @@
-<%= form_for [@profile.user, @profile] do |f| %>
+<section class="widget-screen">
 
-  <%= f.label :first_name %>
-  <%= f.text_field :first_name %>
+  <div class="widget-frame-large">
+    <div class="widget-window-large box-shadow">
+      <div class="widget-header box-shadow">
+        <h4>Edit Profile</h4>
+      </div>
+          <div class="widget-body">
+            <%= form_for [@profile.user, @profile] do |f| %>
+              <div class="widget-row">
+                <span class="col-4"><%= f.label :first_name %></span>
+                <span class="col-8"><%= f.text_field :first_name %></span>
+              </div>
+              <div class="widget-row">
+                <span class="col-4"><%= f.label :last_name %></span>
+                <span class="col-8"><%= f.text_field :last_name %></span>
+              </div>
+              <div class="widget-row center">
+                <span><%= f.submit 'Update Profile' %></span>
+              </div>
+            <% end %>
+        </div>
+    </div>
+  </div>
 
-  <%= f.label :last_name %>
-  <%= f.text_field :last_name %>
-
-  <%= f.submit 'Update Profile' %>
-
-<% end %>
+</section>

@@ -1,4 +1,24 @@
-First Name: <%= @profile.first_name %>
-Last Name: <%= @profile.last_name %>
+<section class="widget-screen">
 
-<%= link_to 'Edit Profile', edit_user_profile_path(@profile.user, @profile) %>
+  <div class="widget-frame-large">
+    <div class="widget-window-large box-shadow">
+      <div class="widget-header box-shadow">
+        <h4>Profile Information</h4>
+      </div>
+          <div class="widget-body">
+              <div class="widget-row">
+                <span class="col-4">First Name:</span>
+                <span class="col-8"><%= @profile.first_name %></span>
+              </div>
+              <div class="widget-row">
+                <span class="col-4">Last Name:</span>
+                <span class="col-8"><%= @profile.last_name %></span>
+              </div>
+              <div class="widget-row center">
+                <span class='btn'><%= link_to 'Edit Profile', edit_user_profile_path(@profile.user, @profile) %></span>
+              </div>
+        </div>
+    </div>
+  </div>
+
+</section>
