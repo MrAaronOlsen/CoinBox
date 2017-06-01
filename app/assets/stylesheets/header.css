@@ -14,8 +14,13 @@
   float: left;
 }
 
-
 .user-nav-menu {
+  min-width: 200px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.menu-item {
   float: right;
 }
 

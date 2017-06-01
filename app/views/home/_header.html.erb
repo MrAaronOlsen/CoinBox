@@ -1,17 +1,17 @@
 <header class="col-12 flex-container box-shadow header">
   <div class="col-12 flex-container box-shadow banner">
-    <div class="col-10 logo">
+    <div class="col-8 logo">
       <h1>CoinBox</h1>
     </div>
 
     <div class="col-2 user-nav-menu">
       <% if current_user %>
-        <span id="user-<%= current_user.id %>">
+        <span class="col-6 menu-item">
           <%= link_to current_user.username, user_profile_path(current_user, current_user.profile) %>
         </span>
-        <span><%= link_to 'Log Out', logout_path, method: 'delete' %></span>
+        <span class="col-6 menu-item"><%= link_to 'Log Out', logout_path, method: 'delete' %></span>
       <% else %>
-        <%= link_to 'Login', login_path %>
+        <span class='col-12 menu-item'><%= link_to 'Login', login_path %></span>
       <% end %>
     </div>
   </div>
